@@ -1,0 +1,54 @@
+.input {
+    width: 700px;
+    background: white;
+    height: 200px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 40px;
+}
+
+.keyboard-wrapper {
+    width: 800px;
+    height: 232px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.keyWrapper {
+    display: flex;
+    flex-direction: row;
+    height: 44px;
+}
+
+.key {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    margin: 2px;
+    border-radius: 2px;
+    
+}
+
+.key-large {
+    width: 82px;
+}
+
+.space {
+    width: 313px;
+}
+
+.tab {
+    width: 72px;
+}
+
+.active {
+    background: yellow;
+}
+
+.upper {
+    text-transform: uppercase;
+}
