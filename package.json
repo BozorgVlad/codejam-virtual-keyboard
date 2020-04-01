@@ -2,7 +2,7 @@
   "name": "virtual-keyboard",
   "version": "1.0.0",
   "description": "My first project",
-  "main": "index.js",
+  "main": "main.js",
   "dependencies": {
     "webpack-cli": "^3.3.11",
     "webpack": "^4.42.1"

@@ -81,609 +81,299 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/main.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./style.css":
-/*!*********************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./style.css ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-exports = ___CSS_LOADER_API_IMPORT___(false);
-// Module
-exports.push([module.i, ".input {\r\n    width: 700px;\r\n    background: white;\r\n    height: 200px;\r\n    margin: 0 auto;\r\n    display: block;\r\n    margin-bottom: 40px;\r\n}\r\n\r\n.keyboard-wrapper {\r\n    width: 800px;\r\n    height: 232px;\r\n    margin: 0 auto;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n}\r\n\r\n.keyWrapper {\r\n    display: flex;\r\n    flex-direction: row;\r\n    height: 44px;\r\n}\r\n\r\n.key {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    width: 40px;\r\n    height: 40px;\r\n    border: 1px solid black;\r\n    margin: 2px;\r\n    border-radius: 2px;\r\n    \r\n}\r\n\r\n.key-large {\r\n    width: 82px;\r\n}\r\n\r\n.space {\r\n    width: 313px;\r\n}\r\n\r\n.tab {\r\n    width: 72px;\r\n}\r\n\r\n.active {\r\n    background: yellow;\r\n}\r\n\r\n.upper {\r\n    text-transform: uppercase;\r\n}", ""]);
-// Exports
-module.exports = exports;
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/api.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/keyboardView.js":
+/*!*****************************!*\
+  !*** ./src/keyboardView.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Keyboard; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-// eslint-disable-next-line func-names
-module.exports = function (useSourceMap) {
-  var list = []; // return the list of modules as css string
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-  list.toString = function toString() {
-    return this.map(function (item) {
-      var content = cssWithMappingToString(item, useSourceMap);
+var Keyboard = /*#__PURE__*/function () {
+  function Keyboard() {
+    _classCallCheck(this, Keyboard);
 
-      if (item[2]) {
-        return "@media ".concat(item[2], " {").concat(content, "}");
-      }
-
-      return content;
-    }).join('');
-  }; // import a list of modules into the list
-  // eslint-disable-next-line func-names
-
-
-  list.i = function (modules, mediaQuery, dedupe) {
-    if (typeof modules === 'string') {
-      // eslint-disable-next-line no-param-reassign
-      modules = [[null, modules, '']];
-    }
-
-    var alreadyImportedModules = {};
-
-    if (dedupe) {
-      for (var i = 0; i < this.length; i++) {
-        // eslint-disable-next-line prefer-destructuring
-        var id = this[i][0];
-
-        if (id != null) {
-          alreadyImportedModules[id] = true;
-        }
-      }
-    }
-
-    for (var _i = 0; _i < modules.length; _i++) {
-      var item = [].concat(modules[_i]);
-
-      if (dedupe && alreadyImportedModules[item[0]]) {
-        // eslint-disable-next-line no-continue
-        continue;
-      }
-
-      if (mediaQuery) {
-        if (!item[2]) {
-          item[2] = mediaQuery;
-        } else {
-          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
-        }
-      }
-
-      list.push(item);
-    }
-  };
-
-  return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-  var content = item[1] || ''; // eslint-disable-next-line prefer-destructuring
-
-  var cssMapping = item[3];
-
-  if (!cssMapping) {
-    return content;
-  }
-
-  if (useSourceMap && typeof btoa === 'function') {
-    var sourceMapping = toComment(cssMapping);
-    var sourceURLs = cssMapping.sources.map(function (source) {
-      return "/*# sourceURL=".concat(cssMapping.sourceRoot || '').concat(source, " */");
-    });
-    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-  }
-
-  return [content].join('\n');
-} // Adapted from convert-source-map (MIT)
-
-
-function toComment(sourceMap) {
-  // eslint-disable-next-line no-undef
-  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-  var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
-  return "/*# ".concat(data, " */");
-}
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var isOldIE = function isOldIE() {
-  var memo;
-  return function memorize() {
-    if (typeof memo === 'undefined') {
-      // Test for IE <= 9 as proposed by Browserhacks
-      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
-      // Tests for existence of standard globals is to allow style-loader
-      // to operate correctly into non-standard environments
-      // @see https://github.com/webpack-contrib/style-loader/issues/177
-      memo = Boolean(window && document && document.all && !window.atob);
-    }
-
-    return memo;
-  };
-}();
-
-var getTarget = function getTarget() {
-  var memo = {};
-  return function memorize(target) {
-    if (typeof memo[target] === 'undefined') {
-      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
-
-      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
-        try {
-          // This will throw an exception if access to iframe is blocked
-          // due to cross-origin restrictions
-          styleTarget = styleTarget.contentDocument.head;
-        } catch (e) {
-          // istanbul ignore next
-          styleTarget = null;
-        }
-      }
-
-      memo[target] = styleTarget;
-    }
-
-    return memo[target];
-  };
-}();
-
-var stylesInDom = [];
-
-function getIndexByIdentifier(identifier) {
-  var result = -1;
-
-  for (var i = 0; i < stylesInDom.length; i++) {
-    if (stylesInDom[i].identifier === identifier) {
-      result = i;
-      break;
-    }
-  }
-
-  return result;
-}
-
-function modulesToDom(list, options) {
-  var idCountMap = {};
-  var identifiers = [];
-
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i];
-    var id = options.base ? item[0] + options.base : item[0];
-    var count = idCountMap[id] || 0;
-    var identifier = "".concat(id, " ").concat(count);
-    idCountMap[id] = count + 1;
-    var index = getIndexByIdentifier(identifier);
-    var obj = {
-      css: item[1],
-      media: item[2],
-      sourceMap: item[3]
+    this.input = document.createElement("textarea");
+    this.wrapper = document.createElement("div");
+    this.language = localStorage.getItem("language") || "en";
+    this.key = [];
+    this.keys = {
+      keyArrEn: [["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace"], ["Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "DEL"], ["CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "\\", "Enter"], ["Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "↑", "shift"], ["Ctrl", "Win", "Alt", " ", "alt", "Ру", "←", "↓", "→"]],
+      keyArrEnShift: [["~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "Backspace"], ["Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "{", "}", "DEL"], ["CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ":", "\"", "|", "Enter"], ["Shift", "z", "x", "c", "v", "b", "n", "m", "<", ">", "?", "↑", "shift"], ["Ctrl", "Win", "Alt", " ", "alt", "Ру", "←", "↓", "→"]],
+      keyArrRu: [["ё", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace"], ["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "DEL"], ["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "\\", "Enter"], ["Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "↑", "shift"], ["Ctrl", "Win", "Alt", " ", "alt", "En", "←", "↓", "→"]],
+      keyArrRuShift: [["Ё", "!", "\"", "№", ";", "%", ":", "?", "*", "(", ")", "_", "+", "Backspace"], ["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "DEL"], ["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "/", "Enter"], ["Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ",", "↑", "shift"], ["Ctrl", "Win", "Alt", " ", "alt", "En", "←", "↓", "→"]]
     };
+  }
 
-    if (index !== -1) {
-      stylesInDom[index].references++;
-      stylesInDom[index].updater(obj);
-    } else {
-      stylesInDom.push({
-        identifier: identifier,
-        updater: addStyle(obj, options),
-        references: 1
+  _createClass(Keyboard, [{
+    key: "bindEvents",
+    value: function bindEvents() {
+      var _this = this;
+
+      this.wrapper.addEventListener("click", function (e) {
+        return _this.onClickHandle(e);
+      });
+      this.wrapper.addEventListener("mousedown", function (e) {
+        return _this.onMouseDown(e);
+      });
+      this.wrapper.addEventListener("mouseup", function (e) {
+        return _this.onMouseUp(e);
+      });
+      document.addEventListener("keydown", function (e) {
+        return _this.onKeyDown(e);
+      });
+      document.addEventListener("keyup", function (e) {
+        return _this.onKeyUp(e);
+      });
+      document.addEventListener("keydown", function (e) {
+        return _this.onShiftStart(e);
+      });
+      document.addEventListener("keyup", function (e) {
+        return _this.onShiftEnd(e);
+      });
+      document.addEventListener("keydown", function (e) {
+        return _this.setCapsState(e);
       });
     }
-
-    identifiers.push(identifier);
-  }
-
-  return identifiers;
-}
-
-function insertStyleElement(options) {
-  var style = document.createElement('style');
-  var attributes = options.attributes || {};
-
-  if (typeof attributes.nonce === 'undefined') {
-    var nonce =  true ? __webpack_require__.nc : undefined;
-
-    if (nonce) {
-      attributes.nonce = nonce;
+  }, {
+    key: "removeCapsState",
+    value: function removeCapsState() {
+      this.key.forEach(function (el) {
+        el.classList.remove("upper");
+      });
     }
-  }
-
-  Object.keys(attributes).forEach(function (key) {
-    style.setAttribute(key, attributes[key]);
-  });
-
-  if (typeof options.insert === 'function') {
-    options.insert(style);
-  } else {
-    var target = getTarget(options.insert || 'head');
-
-    if (!target) {
-      throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+  }, {
+    key: "setCapsState",
+    value: function setCapsState(e) {
+      if (e.which === 20) {
+        document.querySelector(".caps").classList.add("active");
+        this.setUpperKeys();
+      }
     }
+  }, {
+    key: "setUpperKeys",
+    value: function setUpperKeys() {
+      this.key.forEach(function (el) {
+        if (el.innerText.length === 1) {
+          el.classList.add("upper");
+        }
+      });
+    }
+  }, {
+    key: "onShiftEnd",
+    value: function onShiftEnd(e) {
+      if (e.which === 16) {
+        document.querySelector(".key-overlay").remove();
+        this.renderKeys(this.keys.keyArrEn);
+        this.key.forEach(function (el) {
+          el.classList.remove("upper");
+        });
+      }
+    }
+  }, {
+    key: "onShiftStart",
+    value: function onShiftStart(e) {
+      if (e.which === 16) {
+        document.querySelector(".key-overlay").remove();
+        this.renderKeys(this.keys.keyArrEnShift);
+        document.querySelector(".shift").classList.add("active");
+        this.key.forEach(function (el) {
+          if (el.innerText.length === 1) {
+            el.classList.add("upper");
+          }
+        });
+      }
+    }
+  }, {
+    key: "onKeyUp",
+    value: function onKeyUp(e) {
+      this.key.forEach(function (el) {
+        if (e.key === el.innerText.toLowerCase() && e.which !== 20) {
+          el.classList.remove("active");
+        }
+      });
 
-    target.appendChild(style);
-  }
+      if (e.code === "Space") {
+        document.querySelector(".space").classList.remove("active");
+      }
+    }
+  }, {
+    key: "onKeyDown",
+    value: function onKeyDown(e) {
+      var caps = document.querySelector(".caps");
 
-  return style;
-}
+      if (e.which === 20 && caps.classList.contains("active")) {
+        caps.classList.remove("active");
+        this.removeCapsState();
+      }
 
-function removeStyleElement(style) {
-  // istanbul ignore if
-  if (style.parentNode === null) {
-    return false;
-  }
+      this.key.forEach(function (el) {
+        if (e.key === el.innerText.toLowerCase()) {
+          el.classList.add("active");
+        }
+      });
 
-  style.parentNode.removeChild(style);
-}
-/* istanbul ignore next  */
+      if (e.code === "Space") {
+        document.querySelector(".space").classList.add("active");
+      }
+    }
+  }, {
+    key: "onMouseUp",
+    value: function onMouseUp(e) {
+      if (e.target.classList.contains("key") && this.wrapper && !e.target.classList.contains("caps")) {
+        e.target.classList.remove("active");
+      }
+    }
+  }, {
+    key: "onMouseDown",
+    value: function onMouseDown(e) {
+      if (e.target.classList.contains("key") && this.wrapper && !e.target.classList.contains("caps")) {
+        e.target.classList.add("active");
+      }
+    }
+  }, {
+    key: "onClickHandle",
+    value: function onClickHandle(e) {
+      var keyboard = document.querySelector(".key-overlay");
 
+      if (e.target.classList.contains("caps")) {
+        e.target.classList.toggle("active");
+        this.setUpperKeys();
+      }
 
-var replaceText = function replaceText() {
-  var textStore = [];
-  return function replace(index, replacement) {
-    textStore[index] = replacement;
-    return textStore.filter(Boolean).join('\n');
-  };
+      if (e.target.classList.contains("key") && e.target.innerText.length === 1) {
+        this.input.value += e.target.innerText;
+      }
+
+      if (e.target.classList.contains("space")) {
+        this.input.value += " ";
+      }
+
+      if (e.target.innerText === "Ру") {
+        keyboard.remove();
+        this.renderKeys(this.keys.keyArrRu);
+        localStorage.setItem("language", "ru");
+      }
+
+      if (e.target.innerText === "En") {
+        keyboard.remove();
+        this.renderKeys(this.keys.keyArrEn);
+        localStorage.setItem("language", "en");
+      }
+
+      if (e.target.innerText === "Backspace") {
+        this.input.value = this.input.value.substring(0, this.input.value.length - 1);
+      }
+
+      if (e.target.innerText === "CapsLock" && !e.target.classList.contains("active")) {
+        this.removeCapsState();
+      }
+
+      if (e.target.innerText === "Tab") {
+        this.input.value += "    ";
+      }
+    }
+  }, {
+    key: "renderKeyboardTemplate",
+    value: function renderKeyboardTemplate() {
+      this.wrapper.classList.add("keyboard-wrapper");
+      this.input.classList.add("input");
+      this.input.autofocus = true;
+      document.querySelector("body").append(this.input);
+      document.body.append(this.wrapper);
+    }
+  }, {
+    key: "renderKeys",
+    value: function renderKeys(lang) {
+      var keyOverlay = document.createElement("div");
+      keyOverlay.classList.add("key-overlay");
+      this.wrapper.append(keyOverlay);
+
+      for (var i = 0; i < lang.length; i += 1) {
+        var keyWrapper = document.createElement("div");
+        keyWrapper.classList.add("keyWrapper");
+        keyOverlay.append(keyWrapper);
+
+        for (var j = 0; j < lang[i].length; j += 1) {
+          var div = document.createElement("div");
+          div.innerText = "".concat(lang[i][j]);
+          div.classList.add("key");
+          keyWrapper.append(div);
+          this.key.push(div);
+
+          if (lang[i][j].length > 4) {
+            div.classList.add("key-large");
+          }
+
+          if (lang[i][j] === " ") {
+            div.classList.add("space");
+          }
+
+          if (lang[i][j] === "Tab") {
+            div.classList.add("tab");
+          }
+
+          if (lang[i][j] === "CapsLock") {
+            div.classList.add("caps");
+          }
+
+          if (lang[i][j] === "Shift") {
+            div.classList.add("shift");
+          }
+        }
+      }
+    }
+  }]);
+
+  return Keyboard;
 }();
 
-function applyToSingletonTag(style, index, remove, obj) {
-  var css = remove ? '' : obj.media ? "@media ".concat(obj.media, " {").concat(obj.css, "}") : obj.css; // For old IE
 
-  /* istanbul ignore if  */
-
-  if (style.styleSheet) {
-    style.styleSheet.cssText = replaceText(index, css);
-  } else {
-    var cssNode = document.createTextNode(css);
-    var childNodes = style.childNodes;
-
-    if (childNodes[index]) {
-      style.removeChild(childNodes[index]);
-    }
-
-    if (childNodes.length) {
-      style.insertBefore(cssNode, childNodes[index]);
-    } else {
-      style.appendChild(cssNode);
-    }
-  }
-}
-
-function applyToTag(style, options, obj) {
-  var css = obj.css;
-  var media = obj.media;
-  var sourceMap = obj.sourceMap;
-
-  if (media) {
-    style.setAttribute('media', media);
-  } else {
-    style.removeAttribute('media');
-  }
-
-  if (sourceMap && btoa) {
-    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
-  } // For old IE
-
-  /* istanbul ignore if  */
-
-
-  if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-  } else {
-    while (style.firstChild) {
-      style.removeChild(style.firstChild);
-    }
-
-    style.appendChild(document.createTextNode(css));
-  }
-}
-
-var singleton = null;
-var singletonCounter = 0;
-
-function addStyle(obj, options) {
-  var style;
-  var update;
-  var remove;
-
-  if (options.singleton) {
-    var styleIndex = singletonCounter++;
-    style = singleton || (singleton = insertStyleElement(options));
-    update = applyToSingletonTag.bind(null, style, styleIndex, false);
-    remove = applyToSingletonTag.bind(null, style, styleIndex, true);
-  } else {
-    style = insertStyleElement(options);
-    update = applyToTag.bind(null, style, options);
-
-    remove = function remove() {
-      removeStyleElement(style);
-    };
-  }
-
-  update(obj);
-  return function updateStyle(newObj) {
-    if (newObj) {
-      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {
-        return;
-      }
-
-      update(obj = newObj);
-    } else {
-      remove();
-    }
-  };
-}
-
-module.exports = function (list, options) {
-  options = options || {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-  // tags it will allow on a page
-
-  if (!options.singleton && typeof options.singleton !== 'boolean') {
-    options.singleton = isOldIE();
-  }
-
-  list = list || [];
-  var lastIdentifiers = modulesToDom(list, options);
-  return function update(newList) {
-    newList = newList || [];
-
-    if (Object.prototype.toString.call(newList) !== '[object Array]') {
-      return;
-    }
-
-    for (var i = 0; i < lastIdentifiers.length; i++) {
-      var identifier = lastIdentifiers[i];
-      var index = getIndexByIdentifier(identifier);
-      stylesInDom[index].references--;
-    }
-
-    var newLastIdentifiers = modulesToDom(newList, options);
-
-    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
-      var _identifier = lastIdentifiers[_i];
-
-      var _index = getIndexByIdentifier(_identifier);
-
-      if (stylesInDom[_index].references === 0) {
-        stylesInDom[_index].updater();
-
-        stylesInDom.splice(_index, 1);
-      }
-    }
-
-    lastIdentifiers = newLastIdentifiers;
-  };
-};
 
 /***/ }),
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
+/***/ "./src/main.js":
+/*!*********************!*\
+  !*** ./src/main.js ***!
+  \*********************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../style.css */ "./style.css");
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _keyboardView__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./keyboardView */ "./src/keyboardView.js");
 
+var keyboard = new _keyboardView__WEBPACK_IMPORTED_MODULE_0__["default"]();
+keyboard.renderKeyboardTemplate();
 
-function createTextarea() {
-  var input = document.createElement("input");
-  var body = document.querySelector("body");
-  body.append(input);
-  input.classList.add("input");
+if (localStorage.language === "en") {
+  keyboard.renderKeys(keyboard.keys.keyArrEn);
+} else {
+  keyboard.renderKeys(keyboard.keys.keyArrRu);
 }
 
-createTextarea();
+keyboard.bindEvents();
 
-function renderKeyboardTemplate() {
-  var body = document.querySelector("body");
-  var wrapper = document.createElement("div");
-  body.append(wrapper);
-  wrapper.classList.add("keyboard-wrapper");
+if (keyboard.caps) {
+  keyboard.setUpperKeys();
 }
 
-renderKeyboardTemplate();
-var keys = {
-  keyArrEn: [["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace"], ["Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "DEL"], ["CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "\\", "Enter"], ["Shift", "\\", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "↑", "shift"], ["Ctrl", "Win", "Alt", " ", "alt", "Ру", "←", "↓", "→"]],
-  keyArrEnShift: [["~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "Backspace"], ["Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "{", "}", "DEL"], ["CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ":", "\"", "|", "Enter"], ["Shift", "|", "z", "x", "c", "v", "b", "n", "m", "<", ">", "?", "↑", "shift"], ["Ctrl", "Win", "Alt", " ", "alt", "Ру", "←", "↓", "→"]],
-  keyArrRu: [["ё", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace"], ["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "DEL"], ["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "\\", "Enter"], ["Shift", "\\", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "↑", "shift"], ["Ctrl", "Win", "Alt", " ", "alt", "En", "←", "↓", "→"]],
-  keyArrRuShift: [["Ё", "!", "\"", "№", ";", "%", ":", "?", "*", "(", ")", "_", "+", "Backspace"], ["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "DEL"], ["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "/", "Enter"], ["Shift", "/", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ",", "↑", "shift"], ["Ctrl", "Win", "Alt", " ", "alt", "En", "←", "↓", "→"]]
-};
-
-function renderKeys(lang) {
-  var keyboard = document.querySelector(".keyboard-wrapper");
-
-  for (var i = 0; i < lang.length; i += 1) {
-    var keyWrapper = document.createElement("div");
-    keyboard.append(keyWrapper);
-
-    for (var j = 0; j < lang[i].length; j += 1) {
-      var div = document.createElement("div");
-      div.innerText = "".concat(lang[i][j]);
-      keyWrapper.append(div);
-      keyWrapper.classList.add("keyWrapper");
-      div.classList.add("key");
-
-      if (lang[i][j].length > 4) {
-        div.classList.add("key-large");
-      }
-
-      if (lang[i][j] === " ") {
-        div.classList.add("space");
-      }
-
-      if (lang[i][j] === "Tab") {
-        div.classList.add("tab");
-      }
-    }
-  }
+if (!keyboard.caps) {
+  document.querySelector(".caps").classList.remove("active");
 }
-
-renderKeys(keys.keyArrEn);
-
-function addClickKeyHandler() {
-  var keyboard = document.querySelector(".keyboard-wrapper");
-  var input = document.querySelector(".input");
-  keyboard.addEventListener("click", function (e) {
-    if (e.target.classList.contains("key") && e.target.innerText.length < 2) {
-      input.value += e.target.innerText;
-    }
-
-    if (e.target.classList.contains("space")) {
-      input.value += " ";
-    }
-
-    if (e.target.innerText === "Ру") {
-      keyboard.remove();
-      renderKeyboardTemplate();
-      renderKeys(keys.keyArrRu);
-      addClickKeyHandler();
-    }
-
-    if (e.target.innerText === "En") {
-      keyboard.remove();
-      renderKeyboardTemplate();
-      renderKeys(keys.keyArrEn);
-      addClickKeyHandler();
-    }
-
-    if (e.target.innerText === "Backspace") {
-      input.value = input.value.substring(0, input.value.length - 1);
-    }
-  });
-  keyboard.addEventListener("mousedown", function (e) {
-    if (e.target.classList.contains("key")) {
-      e.target.classList.add("active");
-    }
-  });
-  keyboard.addEventListener("mouseup", function (e) {
-    if (e.target.classList.contains("key")) {
-      e.target.classList.remove("active");
-    }
-  });
-}
-
-addClickKeyHandler();
-
-function addKeyboardHandler() {
-  document.addEventListener("keydown", function (e) {
-    var keyses = document.querySelectorAll(".key");
-    keyses.forEach(function (el) {
-      if (e.key.toString() === el.innerText) {
-        el.classList.add("active");
-      }
-    });
-
-    if (e.code === "Space") {
-      document.querySelector(".space").classList.add("active");
-    }
-  });
-  document.addEventListener("keyup", function (e) {
-    var keyses = document.querySelectorAll(".key");
-    keyses.forEach(function (el) {
-      if (e.key.toString() === el.innerText) {
-        el.classList.remove("active");
-      }
-    });
-
-    if (e.code === "Space") {
-      document.querySelector(".space").classList.remove("active");
-    }
-  });
-}
-
-addKeyboardHandler();
-
-function isLetter(c) {
-  return c.toLowerCase() !== c.toUpperCase();
-}
-
-function addStateHandlers() {
-  var state = {
-    capslock: false,
-    language: "ru"
-  };
-  document.addEventListener("keyup", function (e) {
-    if (e.which === 20) {
-      state.capslock = true;
-      var letters = document.querySelectorAll(".key");
-      letters.forEach(function (el) {
-        if (isLetter(el.innerText) && el.innerText.length < 2) {
-          el.classList.add("upper");
-        }
-      });
-    }
-  });
-}
-
-addStateHandlers();
-
-/***/ }),
-
-/***/ "./style.css":
-/*!*******************!*\
-  !*** ./style.css ***!
-  \*******************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(/*! ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-            var content = __webpack_require__(/*! !./node_modules/css-loader/dist/cjs.js!./style.css */ "./node_modules/css-loader/dist/cjs.js!./style.css");
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-var exported = content.locals ? content.locals : {};
-
-
-
-module.exports = exported;
 
 /***/ })
 
