@@ -1,26 +1,35 @@
 .input {
-    width: 700px;
+    width: 730px;
     height: 200px;
     margin: 0 auto;
     display: block;
     margin-bottom: 40px;
+    resize: none;
+    font-size: 18px;
+}
+
+.key-overlay:last-child {
+    justify-content: flex-start;
 }
 
 .keyboard-wrapper {
-    width: 800px;
+    width: 730px;
     height: 232px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    background-color: silver;
 }
 
 .keyWrapper {
     display: flex;
     flex-direction: row;
     height: 44px;
+    justify-content: space-between;
 }
 
 .key {
+    user-select: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,7 +38,12 @@
     border: 1px solid black;
     margin: 2px;
     border-radius: 2px;
-    
+    font-style: bold;
+    color: black;
+}
+
+.keyWrapper .rshift {
+    width: 128px
 }
 
 .key-large {
@@ -41,13 +55,19 @@
 }
 
 .tab {
-    width: 72px;
+    width: 80px;
 }
 
 .active {
     background: yellow;
+    border-radius: 20px;
+    transition: ease .1s;
 }
 
 .upper {
     text-transform: uppercase;
+}
+
+.key:hover {
+    background-color: thistle;
 }

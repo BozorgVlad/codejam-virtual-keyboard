@@ -108,13 +108,14 @@ var Keyboard = /*#__PURE__*/function () {
 
     this.input = document.createElement("textarea");
     this.wrapper = document.createElement("div");
-    this.language = localStorage.getItem("language") || "en";
+    this.language = localStorage.getItem("language");
     this.key = [];
     this.keys = {
-      keyArrEn: [["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace"], ["Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "DEL"], ["CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "\\", "Enter"], ["Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "↑", "shift"], ["Ctrl", "Win", "Alt", " ", "alt", "Ру", "←", "↓", "→"]],
-      keyArrEnShift: [["~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "Backspace"], ["Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "{", "}", "DEL"], ["CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ":", "\"", "|", "Enter"], ["Shift", "z", "x", "c", "v", "b", "n", "m", "<", ">", "?", "↑", "shift"], ["Ctrl", "Win", "Alt", " ", "alt", "Ру", "←", "↓", "→"]],
-      keyArrRu: [["ё", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace"], ["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "DEL"], ["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "\\", "Enter"], ["Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "↑", "shift"], ["Ctrl", "Win", "Alt", " ", "alt", "En", "←", "↓", "→"]],
-      keyArrRuShift: [["Ё", "!", "\"", "№", ";", "%", ":", "?", "*", "(", ")", "_", "+", "Backspace"], ["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "DEL"], ["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "/", "Enter"], ["Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ",", "↑", "shift"], ["Ctrl", "Win", "Alt", " ", "alt", "En", "←", "↓", "→"]]
+      keyArrEn: [["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace"], ["Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]"], ["CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "\\", "Enter"], ["Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "↑", "shift"], ["Ctrl", "Alt", " ", "alt", "Ру", "←", "↓", "→"]],
+      keyArrEnShift: [["~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "Backspace"], ["Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "{", "}"], ["CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ":", "\"", "|", "Enter"], ["Shift", "z", "x", "c", "v", "b", "n", "m", "<", ">", "?", "↑", "shift"], ["Ctrl", "Alt", " ", "alt", "Ру", "←", "↓", "→"]],
+      keyArrRu: [["ё", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace"], ["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ"], ["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "\\", "Enter"], ["Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "↑", "shift"], ["Ctrl", "Alt", " ", "alt", "En", "←", "↓", "→"]],
+      keyArrRuShift: [["Ё", "!", "\"", "№", ";", "%", ":", "?", "*", "(", ")", "_", "+", "Backspace"], ["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ"], ["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "/", "Enter"], ["Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ",", "↑", "shift"], ["Ctrl", "Alt", " ", "alt", "En", "←", "↓", "→"]],
+      arrCode: [["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "Backspace"], ["Tab", "KeyQ", "KeyW", "KeyE", "KeyR", "KeyT", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "BracketLeft", "BracketRight"], ["CapsLock", "KeyA", "KeyS", "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote", "Backslash", "Enter"], ["ShiftLeft", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash", "ArrowUp", "ShiftRight"], ["ControlLeft", "AltLeft", "Space", "AltRight", "MetaRight", "ArrowLeft", "ArrowDown", "ArrowRight"]]
     };
   }
 
@@ -123,7 +124,7 @@ var Keyboard = /*#__PURE__*/function () {
     value: function bindEvents() {
       var _this = this;
 
-      this.wrapper.addEventListener("click", function (e) {
+      this.wrapper.addEventListener("mousedown", function (e) {
         return _this.onClickHandle(e);
       });
       this.wrapper.addEventListener("mousedown", function (e) {
@@ -131,6 +132,9 @@ var Keyboard = /*#__PURE__*/function () {
       });
       this.wrapper.addEventListener("mouseup", function (e) {
         return _this.onMouseUp(e);
+      });
+      document.addEventListener("keydown", function (e) {
+        return _this.changeLanguage(e);
       });
       document.addEventListener("keydown", function (e) {
         return _this.onKeyDown(e);
@@ -149,8 +153,32 @@ var Keyboard = /*#__PURE__*/function () {
       });
     }
   }, {
-    key: "removeCapsState",
-    value: function removeCapsState() {
+    key: "changeLanguage",
+    value: function changeLanguage(e) {
+      e.preventDefault();
+      var keyboard = document.querySelector(".key-overlay");
+
+      if (e.key === "Control" && e.altKey) {
+        if (this.language === "en") {
+          this.language = "ru";
+          localStorage.removeItem("language");
+          localStorage.setItem("language", "ru");
+          keyboard.remove();
+          this.renderKeys(this.keys.keyArrRu);
+        } else if (this.language === "ru") {
+          this.language = "en";
+          localStorage.removeItem("language");
+          localStorage.setItem("language", "en");
+          keyboard.remove();
+          this.renderKeys(this.keys.keyArrEn);
+        }
+
+        console.log(this.language);
+      }
+    }
+  }, {
+    key: "removeUpperCase",
+    value: function removeUpperCase() {
       this.key.forEach(function (el) {
         el.classList.remove("upper");
       });
@@ -159,8 +187,11 @@ var Keyboard = /*#__PURE__*/function () {
     key: "setCapsState",
     value: function setCapsState(e) {
       if (e.which === 20) {
-        document.querySelector(".caps").classList.add("active");
         this.setUpperKeys();
+
+        if (!document.querySelector(".caps").classList.contains("active")) {
+          this.removeUpperCase();
+        }
       }
     }
   }, {
@@ -176,33 +207,43 @@ var Keyboard = /*#__PURE__*/function () {
     key: "onShiftEnd",
     value: function onShiftEnd(e) {
       if (e.which === 16) {
+        this.key = [];
         document.querySelector(".key-overlay").remove();
-        this.renderKeys(this.keys.keyArrEn);
-        this.key.forEach(function (el) {
-          el.classList.remove("upper");
-        });
+
+        if (this.language === "en") {
+          this.renderKeys(this.keys.keyArrEn);
+        } else {
+          this.renderKeys(this.keys.keyArrRu);
+        }
+
+        this.removeUpperCase();
       }
     }
   }, {
     key: "onShiftStart",
     value: function onShiftStart(e) {
       if (e.which === 16) {
+        this.key = [];
         document.querySelector(".key-overlay").remove();
-        this.renderKeys(this.keys.keyArrEnShift);
+
+        if (this.language === "en") {
+          this.renderKeys(this.keys.keyArrEnShift);
+        } else {
+          this.renderKeys(this.keys.keyArrRuShift);
+        }
+
+        this.setUpperKeys();
         document.querySelector(".shift").classList.add("active");
-        this.key.forEach(function (el) {
-          if (el.innerText.length === 1) {
-            el.classList.add("upper");
-          }
-        });
       }
     }
   }, {
     key: "onKeyUp",
     value: function onKeyUp(e) {
       this.key.forEach(function (el) {
-        if (e.key === el.innerText.toLowerCase() && e.which !== 20) {
-          el.classList.remove("active");
+        if (e.code === el.id) {
+          if (!el.classList.contains("caps")) {
+            el.classList.remove("active");
+          }
         }
       });
 
@@ -213,21 +254,44 @@ var Keyboard = /*#__PURE__*/function () {
   }, {
     key: "onKeyDown",
     value: function onKeyDown(e) {
-      var caps = document.querySelector(".caps");
+      var _this2 = this;
 
-      if (e.which === 20 && caps.classList.contains("active")) {
-        caps.classList.remove("active");
-        this.removeCapsState();
-      }
-
+      console.log(e.key.toString().toLowerCase());
+      e.preventDefault();
       this.key.forEach(function (el) {
-        if (e.key === el.innerText.toLowerCase()) {
-          el.classList.add("active");
+        if (e.code === el.id) {
+          if (!el.classList.contains("caps")) {
+            el.classList.add("active");
+
+            if (el.innerText.length === 1) {
+              _this2.input.focus();
+
+              _this2.input.value += el.innerText;
+            }
+          }
+
+          if (el.classList.contains("caps")) {
+            el.classList.toggle("active");
+          }
         }
       });
 
       if (e.code === "Space") {
         document.querySelector(".space").classList.add("active");
+        this.input.value += " ";
+      }
+
+      if (e.code === "Tab") {
+        e.preventDefault();
+        this.input.value += "    ";
+      }
+
+      if (e.code === "Backspace") {
+        this.input.value = this.input.value.substring(0, this.input.value.length - 1);
+      }
+
+      if (e.code === "Enter") {
+        this.input.value += "\n";
       }
     }
   }, {
@@ -251,7 +315,12 @@ var Keyboard = /*#__PURE__*/function () {
 
       if (e.target.classList.contains("caps")) {
         e.target.classList.toggle("active");
-        this.setUpperKeys();
+
+        if (e.target.classList.contains("active")) {
+          this.setUpperKeys();
+        } else {
+          this.removeUpperCase();
+        }
       }
 
       if (e.target.classList.contains("key") && e.target.innerText.length === 1) {
@@ -266,12 +335,14 @@ var Keyboard = /*#__PURE__*/function () {
         keyboard.remove();
         this.renderKeys(this.keys.keyArrRu);
         localStorage.setItem("language", "ru");
+        this.language = "ru";
       }
 
       if (e.target.innerText === "En") {
         keyboard.remove();
         this.renderKeys(this.keys.keyArrEn);
         localStorage.setItem("language", "en");
+        this.language = "en";
       }
 
       if (e.target.innerText === "Backspace") {
@@ -301,16 +372,18 @@ var Keyboard = /*#__PURE__*/function () {
       var keyOverlay = document.createElement("div");
       keyOverlay.classList.add("key-overlay");
       this.wrapper.append(keyOverlay);
+      this.key = [];
 
       for (var i = 0; i < lang.length; i += 1) {
         var keyWrapper = document.createElement("div");
-        keyWrapper.classList.add("keyWrapper");
+        keyWrapper.className = "keyWrapper key-wrapper-".concat(i);
         keyOverlay.append(keyWrapper);
 
         for (var j = 0; j < lang[i].length; j += 1) {
           var div = document.createElement("div");
           div.innerText = "".concat(lang[i][j]);
           div.classList.add("key");
+          div.id = "".concat(this.keys.arrCode[i][j]);
           keyWrapper.append(div);
           this.key.push(div);
 
@@ -324,6 +397,10 @@ var Keyboard = /*#__PURE__*/function () {
 
           if (lang[i][j] === "Tab") {
             div.classList.add("tab");
+          }
+
+          if (lang[i][j] === "shift") {
+            div.classList.add("rshift");
           }
 
           if (lang[i][j] === "CapsLock") {
@@ -366,14 +443,6 @@ if (localStorage.language === "en") {
 }
 
 keyboard.bindEvents();
-
-if (keyboard.caps) {
-  keyboard.setUpperKeys();
-}
-
-if (!keyboard.caps) {
-  document.querySelector(".caps").classList.remove("active");
-}
 
 /***/ })
 

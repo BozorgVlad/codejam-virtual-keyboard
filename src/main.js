@@ -9,10 +9,3 @@ if (localStorage.language === "en") {
     keyboard.renderKeys(keyboard.keys.keyArrRu);
 }
 keyboard.bindEvents();
-
-if (keyboard.caps) {
-    keyboard.setUpperKeys();
-}
-if (!keyboard.caps) {
-    document.querySelector(".caps").classList.remove("active");
-}
