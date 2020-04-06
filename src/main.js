@@ -1,11 +1,10 @@
-import Keyboard from "./keyboardView";
+import Keyboard from "./keyboardView.js";
 
-let keyboard = new Keyboard();
-
+const keyboard = new Keyboard();
 keyboard.renderKeyboardTemplate();
 if (localStorage.language === "en") {
-    keyboard.renderKeys(keyboard.keys.keyArrEn);
+  keyboard.renderKeys(keyboard.keys.keyArrEn);
 } else {
-    keyboard.renderKeys(keyboard.keys.keyArrRu);
+  keyboard.renderKeys(keyboard.keys.keyArrRu);
 }
 keyboard.bindEvents();

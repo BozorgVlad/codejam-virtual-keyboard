@@ -134,7 +134,7 @@ var Keyboard = /*#__PURE__*/function () {
         return _this.onMouseUp(e);
       });
       document.addEventListener("keydown", function (e) {
-        return _this.changeLanguage(e);
+        return _this.changeLanguageOnShortCut(e);
       });
       document.addEventListener("keydown", function (e) {
         return _this.onKeyDown(e);
@@ -153,8 +153,8 @@ var Keyboard = /*#__PURE__*/function () {
       });
     }
   }, {
-    key: "changeLanguage",
-    value: function changeLanguage(e) {
+    key: "changeLanguageOnShortCut",
+    value: function changeLanguageOnShortCut(e) {
       e.preventDefault();
       var keyboard = document.querySelector(".key-overlay");
 
@@ -172,8 +172,6 @@ var Keyboard = /*#__PURE__*/function () {
           keyboard.remove();
           this.renderKeys(this.keys.keyArrEn);
         }
-
-        console.log(this.language);
       }
     }
   }, {
@@ -220,20 +218,30 @@ var Keyboard = /*#__PURE__*/function () {
       }
     }
   }, {
+    key: "isShift",
+    value: function isShift() {
+      document.querySelector(".key-overlay").remove();
+
+      if (this.language === "en") {
+        this.renderKeys(this.keys.keyArrEnShift);
+      } else {
+        this.renderKeys(this.keys.keyArrRuShift);
+      }
+
+      this.setUpperKeys();
+    }
+  }, {
     key: "onShiftStart",
     value: function onShiftStart(e) {
-      if (e.which === 16) {
+      if (e.code === "ShiftLeft") {
         this.key = [];
-        document.querySelector(".key-overlay").remove();
-
-        if (this.language === "en") {
-          this.renderKeys(this.keys.keyArrEnShift);
-        } else {
-          this.renderKeys(this.keys.keyArrRuShift);
-        }
-
-        this.setUpperKeys();
+        this.isShift();
         document.querySelector(".shift").classList.add("active");
+      }
+
+      if (e.code === "ShiftRight") {
+        this.isShift();
+        document.querySelector(".rshift").classList.add("active");
       }
     }
   }, {
@@ -256,7 +264,6 @@ var Keyboard = /*#__PURE__*/function () {
     value: function onKeyDown(e) {
       var _this2 = this;
 
-      console.log(e.key.toString().toLowerCase());
       e.preventDefault();
       this.key.forEach(function (el) {
         if (e.code === el.id) {
@@ -431,9 +438,9 @@ var Keyboard = /*#__PURE__*/function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _keyboardView__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./keyboardView */ "./src/keyboardView.js");
+/* harmony import */ var _keyboardView_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./keyboardView.js */ "./src/keyboardView.js");
 
-var keyboard = new _keyboardView__WEBPACK_IMPORTED_MODULE_0__["default"]();
+var keyboard = new _keyboardView_js__WEBPACK_IMPORTED_MODULE_0__["default"]();
 keyboard.renderKeyboardTemplate();
 
 if (localStorage.language === "en") {
