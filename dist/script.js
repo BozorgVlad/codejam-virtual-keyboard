@@ -246,7 +246,7 @@ var Keyboard = /*#__PURE__*/function () {
   }, {
     key: "onShiftStart",
     value: function onShiftStart(e) {
-      if (e.code === "ShiftLeft" || e.code === "ShiftRight") {
+      if ((e.code === "ShiftLeft" || e.code === "ShiftRight") && !e.repeat) {
         this.key = [];
         this.isShift();
       }
@@ -286,7 +286,7 @@ var Keyboard = /*#__PURE__*/function () {
             }
           }
 
-          if (el.id === "CapsLock") {
+          if (el.id === "CapsLock" && !e.repeat) {
             el.classList.toggle("active");
           }
         }

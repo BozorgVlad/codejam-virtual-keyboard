@@ -139,7 +139,7 @@ export default class Keyboard {
   }
 
   onShiftStart(e) {
-    if (e.code === "ShiftLeft" || e.code === "ShiftRight") {
+    if ((e.code === "ShiftLeft" || e.code === "ShiftRight") && !e.repeat) {
       this.key = [];
       this.isShift();
     }
@@ -170,7 +170,7 @@ export default class Keyboard {
             this.input.setRangeText(el.innerText, this.input.selectionStart, this.input.selectionEnd, "end");
           }
         }
-        if (el.id === "CapsLock") {
+        if (el.id === "CapsLock" && !e.repeat) {
           el.classList.toggle("active");
         }
       }
