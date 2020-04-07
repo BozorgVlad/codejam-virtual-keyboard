@@ -57,17 +57,18 @@ body {
     border: 1px solid black;
     margin: 2px;
     border-radius: 4px;
-    color: black;
+    color: rgb(65, 61, 96);
     background-color: rgb(211, 211, 211);
     font: 15px "Fira Sans", sans-serif;
+    font-weight: 700;
     box-shadow: 0 5px 3px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-.keyWrapper .shift {
+#ShiftLeft {
     width: 100px;
 }
 
-.keyWrapper .rshift {
+#ShiftRight {
     width: 80px;
 }
 
@@ -75,11 +76,11 @@ body {
     width: 82px;
 }
 
-.space {
+#Space {
     width: 313px;
 }
 
-.tab {
+#Tab {
     width: 80px;
 }
 

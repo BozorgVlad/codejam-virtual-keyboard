@@ -7,36 +7,36 @@ export default class Keyboard {
     this.keys = {
       keyArrEn: [
         ["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace"],
-        ["Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]"],
-        ["CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "\\", "Enter"],
-        ["Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "↑", "shift"],
+        ["Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\"],
+        ["CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "Enter"],
+        ["Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "↑", "Shift"],
         ["Ctrl", "Alt", " ", "alt", "Ру", "←", "↓", "→"],
       ],
       keyArrEnShift: [
         ["~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "Backspace"],
-        ["Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "{", "}"],
-        ["CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ":", "\"", "|", "Enter"],
-        ["Shift", "z", "x", "c", "v", "b", "n", "m", "<", ">", "?", "↑", "shift"],
+        ["Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "{", "}", "|"],
+        ["CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ":", "\"", "Enter"],
+        ["Shift", "z", "x", "c", "v", "b", "n", "m", "<", ">", "?", "↑", "Shift"],
         ["Ctrl", "Alt", " ", "alt", "Ру", "←", "↓", "→"],
       ],
       keyArrRu: [
         ["ё", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace"],
-        ["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ"],
-        ["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "\\", "Enter"],
-        ["Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "↑", "shift"],
+        ["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\\"],
+        ["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "Enter"],
+        ["Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "↑", "Shift"],
         ["Ctrl", "Alt", " ", "alt", "En", "←", "↓", "→"],
       ],
       keyArrRuShift: [
         ["Ё", "!", "\"", "№", ";", "%", ":", "?", "*", "(", ")", "_", "+", "Backspace"],
-        ["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ"],
-        ["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "/", "Enter"],
-        ["Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ",", "↑", "shift"],
+        ["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "/"],
+        ["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "Enter"],
+        ["Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ",", "↑", "Shift"],
         ["Ctrl", "Alt", " ", "alt", "En", "←", "↓", "→"],
       ],
       arrCode: [
         ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "Backspace"],
-        ["Tab", "KeyQ", "KeyW", "KeyE", "KeyR", "KeyT", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "BracketLeft", "BracketRight"],
-        ["CapsLock", "KeyA", "KeyS", "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote", "Backslash", "Enter"],
+        ["Tab", "KeyQ", "KeyW", "KeyE", "KeyR", "KeyT", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "BracketLeft", "BracketRight", "Backslash"],
+        ["CapsLock", "KeyA", "KeyS", "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote", "Enter"],
         ["ShiftLeft", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash", "ArrowUp", "ShiftRight"],
         ["ControlLeft", "AltLeft", "Space", "AltRight", "MetaRight", "ArrowLeft", "ArrowDown", "ArrowRight"],
       ],
@@ -45,32 +45,43 @@ export default class Keyboard {
 
   bindEvents() {
     this.wrapper.addEventListener("mousedown", (e) => this.onClickHandle(e));
-    this.wrapper.addEventListener("mousedown", (e) => this.onMouseDown(e));
     this.wrapper.addEventListener("mouseup", (e) => this.onMouseUp(e));
     document.addEventListener("keydown", (e) => this.changeLanguageOnShortCut(e));
     document.addEventListener("keydown", (e) => this.onKeyDown(e));
     document.addEventListener("keyup", (e) => this.onKeyUp(e));
-    document.addEventListener("keydown", (e) => this.onShiftStart(e));
-    document.addEventListener("keyup", (e) => this.onShiftEnd(e));
-    document.addEventListener("keydown", (e) => this.setCapsState(e));
+  }
+
+  removeShiftOnClick(e) {
+    if ((e.target.id === "ShiftLeft" || e.target.id === "ShiftRight") && e.target.classList.contains("active")) {
+      this.isNotShift();
+    }
+  }
+
+  addShiftClick(e) {
+    if ((e.target.id === "ShiftLeft" || e.target.id === "ShiftRight") && !e.target.classList.contains("active")) {
+      this.isShift();
+      document.querySelector("#Shift").classList.add("active");
+    }
+  }
+
+  changeLang(language, keys) {
+    const keyboard = document.querySelector(".key-overlay");
+    this.language = language;
+    localStorage.removeItem("language");
+    localStorage.setItem("language", language);
+    keyboard.remove();
+    this.renderKeys(keys);
   }
 
   changeLanguageOnShortCut(e) {
     e.preventDefault();
-    const keyboard = document.querySelector(".key-overlay");
     if (e.key === "Control" && e.altKey) {
-      if (this.language === "en") {
-        this.language = "ru";
-        localStorage.removeItem("language");
-        localStorage.setItem("language", "ru");
-        keyboard.remove();
-        this.renderKeys(this.keys.keyArrRu);
-      } else if (this.language === "ru") {
-        this.language = "en";
-        localStorage.removeItem("language");
-        localStorage.setItem("language", "en");
-        keyboard.remove();
-        this.renderKeys(this.keys.keyArrEn);
+      if (this.language === "en" && !e.repeat) {
+        this.changeLang("ru", this.keys.keyArrRu);
+        document.querySelector("#AltLeft").classList.add("active");
+      } else if (this.language === "ru" && !e.repeat) {
+        this.changeLang("en", this.keys.keyArrEn);
+        document.querySelector("#AltLeft").classList.add("active");
       }
     }
   }
@@ -82,9 +93,9 @@ export default class Keyboard {
   }
 
   setCapsState(e) {
-    if (e.which === 20) {
+    if (e.key === "CapsLock") {
       this.setUpperKeys();
-      if (!document.querySelector(".caps").classList.contains("active")) {
+      if (!document.querySelector("#CapsLock").classList.contains("active")) {
         this.removeUpperCase();
       }
     }
@@ -99,15 +110,8 @@ export default class Keyboard {
   }
 
   onShiftEnd(e) {
-    if (e.which === 16) {
-      this.key = [];
-      document.querySelector(".key-overlay").remove();
-      if (this.language === "en") {
-        this.renderKeys(this.keys.keyArrEn);
-      } else {
-        this.renderKeys(this.keys.keyArrRu);
-      }
-      this.removeUpperCase();
+    if (e.code === "ShiftLeft" || e.code === "ShiftRight") {
+      this.isNotShift();
     }
   }
 
@@ -119,119 +123,146 @@ export default class Keyboard {
       this.renderKeys(this.keys.keyArrRuShift);
     }
     this.setUpperKeys();
+    document.querySelector("#ShiftLeft").classList.add("active");
+    document.querySelector("#ShiftRight").classList.add("active");
+  }
+
+  isNotShift() {
+    this.key = [];
+    document.querySelector(".key-overlay").remove();
+    if (this.language === "en") {
+      this.renderKeys(this.keys.keyArrEn);
+    } else {
+      this.renderKeys(this.keys.keyArrRu);
+    }
+    this.removeUpperCase();
   }
 
   onShiftStart(e) {
-    if (e.code === "ShiftLeft") {
+    if (e.code === "ShiftLeft" || e.code === "ShiftRight") {
       this.key = [];
       this.isShift();
-      document.querySelector(".shift").classList.add("active");
-    }
-    if (e.code === "ShiftRight") {
-      this.isShift();
-      document.querySelector(".rshift").classList.add("active");
     }
   }
 
   onKeyUp(e) {
     this.key.forEach((el) => {
       if (e.code === el.id) {
-        if (!el.classList.contains("caps")) {
+        if (el.id !== "CapsLock") {
           el.classList.remove("active");
         }
       }
     });
     if (e.code === "Space") {
-      document.querySelector(".space").classList.remove("active");
+      document.querySelector("#Space").classList.remove("active");
     }
+    this.onShiftEnd(e);
   }
 
   onKeyDown(e) {
     e.preventDefault();
     this.key.forEach((el) => {
       if (e.code === el.id) {
-        if (!el.classList.contains("caps")) {
+        if (el.id !== "CapsLock") {
           el.classList.add("active");
           if (el.innerText.length === 1) {
             this.input.focus();
-            this.input.value += el.innerText;
+            this.input.setRangeText(el.innerText, this.input.selectionStart, this.input.selectionEnd, "end");
           }
         }
-        if (el.classList.contains("caps")) {
+        if (el.id === "CapsLock") {
           el.classList.toggle("active");
         }
       }
     });
+    this.setCapsState(e);
     if (e.code === "Space") {
-      document.querySelector(".space").classList.add("active");
-      this.input.value += " ";
+      document.querySelector("#Space").classList.add("active");
+      this.input.setRangeText(" ", this.input.selectionStart, this.input.selectionEnd, "end");
     }
     if (e.code === "Tab") {
       e.preventDefault();
-      this.input.value += "    ";
+      this.input.setRangeText("    ", this.input.selectionStart, this.input.selectionEnd, "end");
     }
     if (e.code === "Backspace") {
       this.input.value = this.input.value.substring(0, this.input.value.length - 1);
     }
     if (e.code === "Enter") {
-      this.input.value += "\n";
+      this.input.setRangeText("\n", this.input.selectionStart, this.input.selectionEnd, "end");
     }
+    this.onShiftStart(e);
   }
 
   onMouseUp(e) {
-    if (e.target.classList.contains("key") && this.wrapper && !e.target.classList.contains("caps")) {
+    if (e.target.classList.contains("key") && this.wrapper && e.target.id !== "CapsLock" && e.target.id !== "ShiftLeft" && e.target.id !== "ShiftRight") {
       e.target.classList.remove("active");
     }
   }
 
   onMouseDown(e) {
-    if (e.target.classList.contains("key") && this.wrapper && !e.target.classList.contains("caps")) {
+    if (e.target.classList.contains("key") && this.wrapper && e.target.id !== "CapsLock" && e.target.id !== "ShiftLeft" && e.target.id !== "ShiftRight") {
       e.target.classList.add("active");
     }
   }
 
+  fixActiveClass() {
+    this.key.forEach((el) => {
+      if (el.id !== "ShiftLeft" && el.id !== "CapsLock") {
+        el.classList.remove("active");
+      }
+    });
+  }
+
   onClickHandle(e) {
-    const keyboard = document.querySelector(".key-overlay");
-    if (e.target.classList.contains("caps")) {
+    this.fixActiveClass();
+    this.onMouseDown(e);
+    if (e.target.id === "CapsLock") {
       e.target.classList.toggle("active");
+      if (document.querySelector("#ShiftLeft").classList.contains("active")) {
+        this.isNotShift();
+        document.querySelector("#ShiftLeft").classList.remove("active");
+      }
       if (e.target.classList.contains("active")) {
         this.setUpperKeys();
       } else {
         this.removeUpperCase();
+        document.querySelector("#ShiftLeft").classList.remove("active");
       }
     }
+    this.addShiftClick(e);
+    this.removeShiftOnClick(e);
     if (e.target.classList.contains("key") && e.target.innerText.length === 1) {
-      this.input.value += e.target.innerText;
+      this.input.setRangeText(e.target.innerText, this.input.selectionStart, this.input.selectionEnd, "end");
+      this.input.focus();
     }
-    if (e.target.classList.contains("space")) {
-      this.input.value += " ";
+    if (e.target.id === "Space") {
+      this.input.setRangeText(" ", this.input.selectionStart, this.input.selectionEnd, "end");
+      this.input.focus();
     }
     if (e.target.innerText === "Ру") {
-      keyboard.remove();
-      this.renderKeys(this.keys.keyArrRu);
-      localStorage.setItem("language", "ru");
-      this.language = "ru";
+      this.changeLang("ru", this.keys.keyArrRu);
     }
     if (e.target.innerText === "En") {
-      keyboard.remove();
-      this.renderKeys(this.keys.keyArrEn);
-      localStorage.setItem("language", "en");
-      this.language = "en";
+      this.changeLang("en", this.keys.keyArrEn);
     }
-    if (e.target.innerText === "Backspace") {
+    if (e.target.id === "Backspace") {
       this.input.value = this.input.value.substring(0, this.input.value.length - 1);
+      this.input.focus();
     }
-    if (e.target.innerText === "CapsLock" && !e.target.classList.contains("active")) {
-      this.removeCapsState();
+    if (e.target.id === "Tab") {
+      this.input.setRangeText("    ", this.input.selectionStart, this.input.selectionEnd, "end");
+      this.input.focus();
     }
-    if (e.target.innerText === "Tab") {
-      this.input.value += "    ";
+    if (e.target.id === "Enter") {
+      this.input.setRangeText("\n", this.input.selectionStart, this.input.selectionEnd, "end");
+      this.input.focus();
     }
   }
 
   renderKeyboardTemplate() {
     this.wrapper.classList.add("keyboard-wrapper");
     this.input.classList.add("input");
+    this.input.placeholder = "change language: Alt + Ctrl";
     this.input.autofocus = true;
     document.querySelector("body").append(this.input);
     document.body.append(this.wrapper);
@@ -255,21 +286,6 @@ export default class Keyboard {
         this.key.push(div);
         if (lang[i][j].length > 4) {
           div.classList.add("key-large");
-        }
-        if (lang[i][j] === " ") {
-          div.classList.add("space");
-        }
-        if (lang[i][j] === "Tab") {
-          div.classList.add("tab");
-        }
-        if (lang[i][j] === "shift") {
-          div.classList.add("rshift");
-        }
-        if (lang[i][j] === "CapsLock") {
-          div.classList.add("caps");
-        }
-        if (lang[i][j] === "Shift") {
-          div.classList.add("shift");
         }
       }
     }
