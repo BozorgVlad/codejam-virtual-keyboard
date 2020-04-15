@@ -106,6 +106,7 @@ var Keyboard = /*#__PURE__*/function () {
   function Keyboard() {
     _classCallCheck(this, Keyboard);
 
+    this.mainWrapper = document.createElement("div");
     this.input = document.createElement("textarea");
     this.wrapper = document.createElement("div");
     this.language = localStorage.getItem("language");
@@ -151,8 +152,8 @@ var Keyboard = /*#__PURE__*/function () {
     key: "addShiftClick",
     value: function addShiftClick(e) {
       if ((e.target.id === "ShiftLeft" || e.target.id === "ShiftRight") && !e.target.classList.contains("active")) {
-        this.isShift();
-        document.querySelector("#Shift").classList.add("active");
+        this.renderShiftState();
+        document.querySelector("#ShiftLeft").classList.add("active");
       }
     }
   }, {
@@ -215,8 +216,8 @@ var Keyboard = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "isShift",
-    value: function isShift() {
+    key: "renderShiftState",
+    value: function renderShiftState() {
       document.querySelector(".key-overlay").remove();
 
       if (this.language === "en") {
@@ -248,7 +249,7 @@ var Keyboard = /*#__PURE__*/function () {
     value: function onShiftStart(e) {
       if ((e.code === "ShiftLeft" || e.code === "ShiftRight") && !e.repeat) {
         this.key = [];
-        this.isShift();
+        this.renderShiftState();
       }
     }
   }, {
@@ -293,22 +294,26 @@ var Keyboard = /*#__PURE__*/function () {
       });
       this.setCapsState(e);
 
-      if (e.code === "Space") {
-        document.querySelector("#Space").classList.add("active");
-        this.input.setRangeText(" ", this.input.selectionStart, this.input.selectionEnd, "end");
-      }
+      switch (e.code) {
+        case "Space":
+          document.querySelector("#Space").classList.add("active");
+          this.input.setRangeText(" ", this.input.selectionStart, this.input.selectionEnd, "end");
+          break;
 
-      if (e.code === "Tab") {
-        e.preventDefault();
-        this.input.setRangeText("    ", this.input.selectionStart, this.input.selectionEnd, "end");
-      }
+        case "Tab":
+          e.preventDefault();
+          this.input.setRangeText("    ", this.input.selectionStart, this.input.selectionEnd, "end");
+          break;
 
-      if (e.code === "Backspace") {
-        this.input.value = this.input.value.substring(0, this.input.value.length - 1);
-      }
+        case "Backspace":
+          this.input.value = this.input.value.substring(0, this.input.value.length - 1);
+          break;
 
-      if (e.code === "Enter") {
-        this.input.setRangeText("\n", this.input.selectionStart, this.input.selectionEnd, "end");
+        case "Enter":
+          this.input.setRangeText("\n", this.input.selectionStart, this.input.selectionEnd, "end");
+          break;
+
+        default:
       }
 
       this.onShiftStart(e);
@@ -366,11 +371,6 @@ var Keyboard = /*#__PURE__*/function () {
         this.input.focus();
       }
 
-      if (e.target.id === "Space") {
-        this.input.setRangeText(" ", this.input.selectionStart, this.input.selectionEnd, "end");
-        this.input.focus();
-      }
-
       if (e.target.innerText === "Ру") {
         this.changeLang("ru", this.keys.keyArrRu);
       }
@@ -379,30 +379,40 @@ var Keyboard = /*#__PURE__*/function () {
         this.changeLang("en", this.keys.keyArrEn);
       }
 
-      if (e.target.id === "Backspace") {
-        this.input.value = this.input.value.substring(0, this.input.value.length - 1);
-        this.input.focus();
-      }
+      switch (e.target.id) {
+        case "Space":
+          this.input.setRangeText(" ", this.input.selectionStart, this.input.selectionEnd, "end");
+          this.input.focus();
+          break;
 
-      if (e.target.id === "Tab") {
-        this.input.setRangeText("    ", this.input.selectionStart, this.input.selectionEnd, "end");
-        this.input.focus();
-      }
+        case "Backspace":
+          this.input.value = this.input.value.substring(0, this.input.value.length - 1);
+          this.input.focus();
+          break;
 
-      if (e.target.id === "Enter") {
-        this.input.setRangeText("\n", this.input.selectionStart, this.input.selectionEnd, "end");
-        this.input.focus();
+        case "Tab":
+          this.input.setRangeText("    ", this.input.selectionStart, this.input.selectionEnd, "end");
+          this.input.focus();
+          break;
+
+        case "Enter":
+          this.input.setRangeText("\n", this.input.selectionStart, this.input.selectionEnd, "end");
+          this.input.focus();
+          break;
+
+        default:
       }
     }
   }, {
     key: "renderKeyboardTemplate",
     value: function renderKeyboardTemplate() {
+      this.mainWrapper.classList.add("wrapper");
       this.wrapper.classList.add("keyboard-wrapper");
       this.input.classList.add("input");
       this.input.placeholder = "change language: Alt + Ctrl";
       this.input.autofocus = true;
-      document.querySelector("body").append(this.input);
-      document.body.append(this.wrapper);
+      this.mainWrapper.append(this.input);
+      this.mainWrapper.append(this.wrapper);
     }
   }, {
     key: "renderKeys",
@@ -452,6 +462,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _keyboardView_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./keyboardView.js */ "./src/keyboardView.js");
 
 var keyboard = new _keyboardView_js__WEBPACK_IMPORTED_MODULE_0__["default"]();
+document.body.append(keyboard.mainWrapper);
 keyboard.renderKeyboardTemplate();
 
 if (localStorage.language === "en") {

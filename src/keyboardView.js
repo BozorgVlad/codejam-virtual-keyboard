@@ -1,5 +1,6 @@
 export default class Keyboard {
   constructor() {
+    this.mainWrapper = document.createElement("div");
     this.input = document.createElement("textarea");
     this.wrapper = document.createElement("div");
     this.language = localStorage.getItem("language");
@@ -59,8 +60,8 @@ export default class Keyboard {
 
   addShiftClick(e) {
     if ((e.target.id === "ShiftLeft" || e.target.id === "ShiftRight") && !e.target.classList.contains("active")) {
-      this.isShift();
-      document.querySelector("#Shift").classList.add("active");
+      this.renderShiftState();
+      document.querySelector("#ShiftLeft").classList.add("active");
     }
   }
 
@@ -115,7 +116,7 @@ export default class Keyboard {
     }
   }
 
-  isShift() {
+  renderShiftState() {
     document.querySelector(".key-overlay").remove();
     if (this.language === "en") {
       this.renderKeys(this.keys.keyArrEnShift);
@@ -141,7 +142,7 @@ export default class Keyboard {
   onShiftStart(e) {
     if ((e.code === "ShiftLeft" || e.code === "ShiftRight") && !e.repeat) {
       this.key = [];
-      this.isShift();
+      this.renderShiftState();
     }
   }
 
@@ -176,19 +177,22 @@ export default class Keyboard {
       }
     });
     this.setCapsState(e);
-    if (e.code === "Space") {
-      document.querySelector("#Space").classList.add("active");
-      this.input.setRangeText(" ", this.input.selectionStart, this.input.selectionEnd, "end");
-    }
-    if (e.code === "Tab") {
-      e.preventDefault();
-      this.input.setRangeText("    ", this.input.selectionStart, this.input.selectionEnd, "end");
-    }
-    if (e.code === "Backspace") {
-      this.input.value = this.input.value.substring(0, this.input.value.length - 1);
-    }
-    if (e.code === "Enter") {
-      this.input.setRangeText("\n", this.input.selectionStart, this.input.selectionEnd, "end");
+    switch (e.code) {
+      case "Space":
+        document.querySelector("#Space").classList.add("active");
+        this.input.setRangeText(" ", this.input.selectionStart, this.input.selectionEnd, "end");
+        break;
+      case "Tab":
+        e.preventDefault();
+        this.input.setRangeText("    ", this.input.selectionStart, this.input.selectionEnd, "end");
+        break;
+      case "Backspace":
+        this.input.value = this.input.value.substring(0, this.input.value.length - 1);
+        break;
+      case "Enter":
+        this.input.setRangeText("\n", this.input.selectionStart, this.input.selectionEnd, "end");
+        break;
+      default:
     }
     this.onShiftStart(e);
   }
@@ -235,37 +239,41 @@ export default class Keyboard {
       this.input.setRangeText(e.target.innerText, this.input.selectionStart, this.input.selectionEnd, "end");
       this.input.focus();
     }
-    if (e.target.id === "Space") {
-      this.input.setRangeText(" ", this.input.selectionStart, this.input.selectionEnd, "end");
-      this.input.focus();
-    }
     if (e.target.innerText === "Ру") {
       this.changeLang("ru", this.keys.keyArrRu);
     }
     if (e.target.innerText === "En") {
       this.changeLang("en", this.keys.keyArrEn);
     }
-    if (e.target.id === "Backspace") {
-      this.input.value = this.input.value.substring(0, this.input.value.length - 1);
-      this.input.focus();
-    }
-    if (e.target.id === "Tab") {
-      this.input.setRangeText("    ", this.input.selectionStart, this.input.selectionEnd, "end");
-      this.input.focus();
-    }
-    if (e.target.id === "Enter") {
-      this.input.setRangeText("\n", this.input.selectionStart, this.input.selectionEnd, "end");
-      this.input.focus();
+    switch (e.target.id) {
+      case "Space":
+        this.input.setRangeText(" ", this.input.selectionStart, this.input.selectionEnd, "end");
+        this.input.focus();
+        break;
+      case "Backspace":
+        this.input.value = this.input.value.substring(0, this.input.value.length - 1);
+        this.input.focus();
+        break;
+      case "Tab":
+        this.input.setRangeText("    ", this.input.selectionStart, this.input.selectionEnd, "end");
+        this.input.focus();
+        break;
+      case "Enter":
+        this.input.setRangeText("\n", this.input.selectionStart, this.input.selectionEnd, "end");
+        this.input.focus();
+        break;
+      default:
     }
   }
 
   renderKeyboardTemplate() {
+    this.mainWrapper.classList.add("wrapper");
     this.wrapper.classList.add("keyboard-wrapper");
     this.input.classList.add("input");
     this.input.placeholder = "change language: Alt + Ctrl";
     this.input.autofocus = true;
-    document.querySelector("body").append(this.input);
-    document.body.append(this.wrapper);
+    this.mainWrapper.append(this.input);
+    this.mainWrapper.append(this.wrapper);
   }
 
   renderKeys(lang) {
